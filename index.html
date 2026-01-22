@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MilesPe | India's Most Accurate Distance-Based Transport Service | Hyderabad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-road"></i>
+                    Miles<span>Pe</span>
+                    <span class="location-tag">🚩 Hyderabad</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#services">Services</a>
+                    <a href="#book">Book Now</a>
+                    <a href="#features">Features</a>
+                    <a href="#about">About</a>
+                    
+                    <!-- LOGIN BUTTON ADDED HERE -->
+                    <a href="login.html" class="login-btn-nav">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                    
+                    <!-- USER MENU (Hidden by default) -->
+                    <div id="userMenu" style="display: none;">
+                        <div class="user-avatar">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="userName">User</span>
+                            <div class="user-dropdown">
+                                <a href="#"><i class="fas fa-user"></i> Profile</a>
+                                <a href="#"><i class="fas fa-history"></i> Ride History</a>
+                                <a href="#"><i class="fas fa-wallet"></i> Wallet</a>
+                                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="cta-button">Download App</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Kilometer-Based Taxi, Bike & Courier Services in Hyderabad</h1>
+                <p>MilesPe offers transparent per-km pricing for rides and deliveries in Hyderabad. No surge pricing, no hidden charges. Accurate distance calculation with live Indian maps.</p>
+                <button class="cta-button" style="padding: 15px 30px; font-size: 1.1rem;">
+                    <i class="fas fa-bolt"></i> Book Now in Hyderabad
+                </button>
+                <div class="stats">
+                    <div class="stat-item">
+                        <h3>10K+</h3>
+                        <p>Happy Hyderabad Customers</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>50K+</h3>
+                        <p>Kilometers Covered</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>4.8★</h3>
+                        <p>Hyderabad Rating</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1595599512946-1e5d1e9dd0c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hyderabad Transportation">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services in Hyderabad</h2>
+                <p>Choose from distance-based transport solutions with transparent pricing</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-taxi"></i>
+                    </div>
+                    <h3>Taxi Service</h3>
+                    <p>Book AC/non-AC taxis with transparent per-km pricing across Hyderabad.</p>
+                    <div class="service-price">
+                        <div>₹12/km</div>
+                        <div class="service-minimum">Minimum Fare: ₹40</div>
+                        <div class="service-note">(First 2 km included)</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <h3>Bike Ride</h3>
+                    <p>Quick and affordable bike rides for Hyderabad's traffic. Helmet provided.</p>
+                    <div class="service-price">
+                        <div>₹8/km</div>
+                        <div class="service-minimum">Minimum Fare: ₹25</div>
+                        <div class="service-note">(First 2 km included)</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Courier Delivery</h3>
+                    <p>Same-day delivery for packages across Hyderabad. Real-time tracking.</p>
+                    <div class="service-price">
+                        <div>₹10/km</div>
+                        <div class="service-minimum">Minimum Fare: ₹30</div>
+                        <div class="service-note">(First 2 km included)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="book">
+        <div class="container">
+            <div class="section-title">
+                <h2>Book Your Ride in Hyderabad</h2>
+                <p>Enter pickup and destination for accurate distance & price calculation</p>
+            </div>
+            <div class="booking-container">
+                <div class="booking-form">
+                    <div class="service-type-selector">
+                        <div class="service-type active" id="taxi-service">
+                            <i class="fas fa-taxi"></i>
+                            <div>Taxi</div>
+                        </div>
+                        <div class="service-type" id="bike-service">
+                            <i class="fas fa-motorcycle"></i>
+                            <div>Bike</div>
+                        </div>
+                        <div class="service-type" id="courier-service">
+                            <i class="fas fa-box"></i>
+                            <div>Courier</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pickup"><i class="fas fa-map-marker-alt"></i> Pickup Location</label>
+                        <input type="text" id="pickup" class="form-control" placeholder="Enter pickup address in Hyderabad" value="Hitech City, Hyderabad">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="destination"><i class="fas fa-flag-checkered"></i> Destination</label>
+                        <input type="text" id="destination" class="form-control" placeholder="Enter destination address in Hyderabad" value="Secunderabad Railway Station, Hyderabad">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service-type"><i class="fas fa-cog"></i> Service Type</label>
+                        <select id="service-type" class="form-control">
+                            <option value="standard">Standard</option>
+                            <option value="premium">Premium (AC Taxi)</option>
+                            <option value="express">Express Delivery</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button class="cta-button" style="width: 100%; padding: 15px; font-size: 1.1rem;" id="calculate-btn">
+                            <i class="fas fa-calculator"></i> Calculate Distance & Price
+                        </button>
+                    </div>
+                    
+                    <div class="pricing-calculator">
+                        <h3>Estimated Cost</h3>
+                        <div class="distance-display">
+                            <span id="distance-value">8.5</span> km
+                        </div>
+                        <div class="price-estimate">
+                            ₹<span id="price-value">102.00</span>
+                        </div>
+                        <div class="price-breakdown">
+                            <div>Base Fare: ₹102.00</div>
+                            <div>GST (5%): ₹5.10</div>
+                            <div class="total-price">Total: ₹<span id="total-price">107.10</span></div>
+                        </div>
+                        <p class="estimate-note">Based on Hyderabad traffic conditions</p>
+                        <button class="cta-button confirm-booking">
+                            <i class="fas fa-check-circle"></i> Confirm Booking
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="map-section">
+                    <h3>Hyderabad Route Map</h3>
+                    <div class="map-container">
+                        <div id="map"></div>
+                    </div>
+                    <div class="booking-summary">
+                        <div class="summary-item">
+                            <div>Estimated Time</div>
+                            <div class="summary-value">25 min</div>
+                        </div>
+                        <div class="summary-item">
+                            <div>Vehicle Type</div>
+                            <div class="summary-value" id="vehicle-type">Taxi</div>
+                        </div>
+                        <div class="summary-item">
+                            <div>Rate</div>
+                            <div class="summary-value" id="rate-value">₹12/km</div>
+                        </div>
+                    </div>
+                    <div class="indian-payment">
+                        <p><i class="fas fa-rupee-sign"></i> Indian Payment Options:</p>
+                        <div class="payment-icons">
+                            <span>UPI</span>
+                            <span>Cash</span>
+                            <span>Card</span>
+                            <span>Paytm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hyderabad Coverage Section -->
+    <section class="coverage">
+        <div class="container">
+            <div class="section-title">
+                <h2>Coverage Areas in Hyderabad</h2>
+                <p>Currently serving major areas across Hyderabad city</p>
+            </div>
+            <div class="coverage-grid">
+                <div class="coverage-area">
+                    <i class="fas fa-building"></i>
+                    <h3>Hitech City & Gachibowli</h3>
+                </div>
+                <div class="coverage-area">
+                    <i class="fas fa-university"></i>
+                    <h3>Banjara Hills & Jubilee Hills</h3>
+                </div>
+                <div class="coverage-area">
+                    <i class="fas fa-train"></i>
+                    <h3>Secunderabad & Begumpet</h3>
+                </div>
+                <div class="coverage-area">
+                    <i class="fas fa-shopping-mall"></i>
+                    <h3>Kukatpally & Miyapur</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MilesPe Hyderabad</h3>
+                    <p>India's first accurate distance-based transport service. Currently operating in Hyderabad with plans to expand.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Hyderabad Services</h3>
+                    <ul>
+                        <li><a href="#">Taxi in Hyderabad</a></li>
+                        <li><a href="#">Bike Ride in Hyderabad</a></li>
+                        <li><a href="#">Courier in Hyderabad</a></li>
+                        <li><a href="#">Airport Drop Hyderabad</a></li>
+                        <li><a href="#">Local Packages Delivery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact in Hyderabad</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Hitech City, Hyderabad, Telangana</li>
+                        <li><i class="fas fa-phone"></i> +91 91234 56789</li>
+                        <li><i class="fas fa-envelope"></i> hyderabad@milespe.com</li>
+                        <li><i class="fab fa-whatsapp"></i> +91 91234 56789 (WhatsApp)</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Download App</h3>
+                    <div class="app-download">
+                        <button class="app-btn">
+                            <i class="fab fa-google-play"></i> Google Play
+                        </button>
+                        <button class="app-btn">
+                            <i class="fab fa-apple"></i> App Store
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 MilesPe India. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | Made for India 🇮🇳</p>
+                <p class="indian-only">⚠️ Currently serving only Hyderabad, India. Other cities coming soon.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS for Maps -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Load auth.js first -->
+    <script src="auth.js"></script>
+    <!-- Load map.js for advanced features -->
+    <script src="map.js"></script>
+    <!-- Load main script last -->
+    <script src="script.js"></script>
+</body>
+</html>
